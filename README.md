@@ -39,3 +39,27 @@ Above sample will produce:
 2023-01-01T01:01:01+00:00||INFO||Log message
 2023-01-01T01:01:01+00:00||INFO||A group of walrus emerges from the ocean||animal=walrus||size=10
 ```
+#### custom Formatter
+```go
+package main
+
+import (
+	formatter "github.com/WeiZhixiong/easy-logrus-formatter"
+	"github.com/sirupsen/logrus"
+	"time"
+)
+
+func main() {
+	log := logrus.New()
+	log.SetFormatter(&formatter.Formatter{
+		Delimiter:  ",",
+		TimeFormat: time.RFC3339Nano,
+		LogFields:  []formatter.LogField{formatter.Level, formatter.LogTime, formatter.Msg},
+	})
+	log.Info("Log message")
+}
+```
+Above sample will produce:
+```bash
+INFO,2023-01-01T01:01:01.77971+00:00,Log message
+```
