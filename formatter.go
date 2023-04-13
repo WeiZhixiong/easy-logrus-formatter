@@ -12,14 +12,14 @@ import (
 type LogField string
 
 const (
-	logTime = LogField("time")
-	level   = LogField("level")
-	msg     = LogField("msg")
+	LogTime = LogField("time")
+	Level   = LogField("level")
+	Msg     = LogField("msg")
 )
 
 var (
 	defaultDelimiter  = "||"
-	defaultLogFields  = []LogField{logTime, level, msg}
+	defaultLogFields  = []LogField{LogTime, Level, Msg}
 	defaultTimeFormat = time.RFC3339
 )
 
@@ -48,11 +48,11 @@ func (f *Formatter) Format(entry *logrus.Entry) ([]byte, error) {
 			b.WriteString(f.Delimiter)
 		}
 		switch field {
-		case logTime:
+		case LogTime:
 			b.WriteString(entry.Time.Format(f.TimeFormat))
-		case level:
+		case Level:
 			b.WriteString(strings.ToUpper(entry.Level.String()))
-		case msg:
+		case Msg:
 			b.WriteString(entry.Message)
 			if entry.Data != nil {
 				for k, v := range entry.Data {

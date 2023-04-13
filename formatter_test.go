@@ -52,7 +52,7 @@ func TestFormatterDefaultFormat(t *testing.T) {
 func TestFormatterCustomFormat(t *testing.T) {
 	f := &Formatter{
 		Delimiter:  ",",
-		LogFields:  []LogField{level, logTime, msg},
+		LogFields:  []LogField{Level, LogTime, Msg},
 		TimeFormat: time.RFC3339Nano,
 	}
 	l := logrus.New()
