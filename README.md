@@ -1,5 +1,5 @@
 ## Easy Logrus Formatter
-Provide a user-friendly formatter for [Logrus](https://github.com/sirupsen/logrus)
+Provide a user-friendly formatter for [Logrus](https://github.com/sirupsen/logrus) <br>
 Some inspiration taken from [logrus-easy-formatter](https://github.com/t-tomalak/logrus-easy-formatter)
 
 ## Default output
