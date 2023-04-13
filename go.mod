@@ -1,4 +1,4 @@
-module formatter
+module github.com/WeiZhixiong/easy-logrus-formatter
 
 go 1.20
 
