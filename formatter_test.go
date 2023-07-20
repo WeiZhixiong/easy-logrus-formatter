@@ -1,6 +1,7 @@
 package formatter
 
 import (
+	"bytes"
 	"fmt"
 	"github.com/sirupsen/logrus"
 	"strings"
@@ -75,5 +76,23 @@ func TestFormatterCustomFormat(t *testing.T) {
 		if string(b) != expected {
 			t.Errorf("formatting expected result was %q instead of %q", string(b), expected)
 		}
+	}
+}
+
+func TestFormatterCallerFormat(t *testing.T) {
+	buf := &bytes.Buffer{}
+	f := &Formatter{
+		Delimiter:  ",",
+		LogFields:  []LogField{LogTime, Level, Caller, Msg},
+		TimeFormat: time.RFC3339Nano,
+	}
+	l := logrus.New()
+	l.Out = buf
+	l.SetReportCaller(true)
+	l.SetFormatter(f)
+	l.Info("test")
+	fmt.Println(buf.String())
+	if !strings.Contains(buf.String(), "formatter_test.go:") {
+		t.Errorf("formatting expected result has %q, but real log: %q", "formatter_test.go:", buf.String())
 	}
 }

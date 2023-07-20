@@ -15,6 +15,7 @@ const (
 	LogTime = LogField("time")
 	Level   = LogField("level")
 	Msg     = LogField("msg")
+	Caller  = LogField("caller")
 )
 
 var (
@@ -58,6 +59,10 @@ func (f *Formatter) Format(entry *logrus.Entry) ([]byte, error) {
 				for k, v := range entry.Data {
 					fmt.Fprintf(b, "%s%s=%v", f.Delimiter, k, v)
 				}
+			}
+		case Caller:
+			if entry.HasCaller() {
+				fmt.Fprintf(b, "%s:%d", entry.Caller.File, entry.Caller.Line)
 			}
 		}
 
