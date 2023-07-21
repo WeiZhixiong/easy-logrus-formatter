@@ -19,7 +19,7 @@ const (
 )
 
 var (
-	defaultDelimiter  = "||"
+	defaultDelimiter  = " || "
 	defaultLogFields  = []LogField{LogTime, Level, Msg}
 	defaultTimeFormat = time.RFC3339
 )
